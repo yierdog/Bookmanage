@@ -55,6 +55,10 @@ class Ui_Form(QWidget):
         icon1.addPixmap(QtGui.QPixmap("../image/reset.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_2.setIcon(icon1)
         self.pushButton_2.setObjectName("pushButton_2")
+
+        #重置按钮绑定点击事件的槽函数
+        self.pushButton_2.clicked.connect(self.resetForm)
+
         self.label_3 = QtWidgets.QLabel(Form)
         self.label_3.setGeometry(QtCore.QRect(160, 40, 191, 31))
         font = QtGui.QFont()
@@ -79,6 +83,11 @@ class Ui_Form(QWidget):
         self.loginbtn.setText(_translate("Form", "登录"))
         self.pushButton_2.setText(_translate("Form", "重置"))
         self.label_3.setText(_translate("Form", "图书管理系统"))
+
+    #定义重置方法
+    def resetForm(self):
+        self.usernameinput.setText("")
+        self.passwordinpurt.setText("")
 
 #测试
 if __name__ == '__main__':

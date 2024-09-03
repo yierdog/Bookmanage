@@ -3,7 +3,7 @@
 import sys
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QMainWindow, QApplication
+from PyQt5.QtWidgets import QMainWindow, QApplication, QLabel
 
 from view.login import Ui_Form
 
@@ -24,6 +24,10 @@ class Ui_MainWindow(QMainWindow):
         MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+
+        #设置背景图片 setStyleSheet:获取图片
+        self.centralwidget.setStyleSheet("border-image:url('../image/background.png')")
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1018, 26))
@@ -37,6 +41,12 @@ class Ui_MainWindow(QMainWindow):
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
+
+        #设置状态栏内容
+        myLable=QLabel()
+        myLable.setText("当前登录用户："+"待设置"+" | 作者： root ")
+        self.statusbar.addWidget(myLable)
+
         MainWindow.setStatusBar(self.statusbar)
         self.action = QtWidgets.QAction(MainWindow)
         icon1 = QtGui.QIcon()

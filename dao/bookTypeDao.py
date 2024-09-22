@@ -1,7 +1,7 @@
 #图书类别数据访问对象
 # -*- coding: utf-8 -*-
 from entity.BookTypeModel import BookType
-from util import dbUtil
+from utill import dbUtil
 def add(bookType:BookType):
     """
     图书类别添加

@@ -3,7 +3,7 @@
 用户模块-数据访问对象
 """
 from entity.UserModel import User
-from util import dbUtil
+from utill import dbUtil
 
 
 #记录当前登录用户

@@ -1,7 +1,7 @@
 #图书数据访问对象（外键）
 # -*- coding: utf-8 -*-
 from entity.BookModel import Book
-from util import dbUtil
+from utill import dbUtil
 
 
 def countBypeId(typeId):

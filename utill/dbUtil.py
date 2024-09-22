@@ -13,7 +13,6 @@ def getCon():
     )
     return con
 
-
 # 关闭数据库连接
 def closeCon(con: Connection):
     if con:

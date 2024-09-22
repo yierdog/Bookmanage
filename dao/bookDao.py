@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 from entity.BookModel import Book
 from utill import dbUtil
-
-
 def countBypeId(typeId):
     """
     根据图书类别id查询图书数量

@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 #图书添加模块
 import sys
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QWidget, QApplication, QMessageBox
-
 from dao import bookTypeDao, bookDao
 from entity.BookModel import Book
 

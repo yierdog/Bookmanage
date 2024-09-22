@@ -9,7 +9,7 @@ def getCon():
         host='localhost',
         port=3306,
         user='root',
-        password='TJP0596',
+        password='******',
         database='book',
         autocommit=True  # 设置自动提交
     )

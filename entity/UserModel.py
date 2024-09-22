@@ -1,6 +1,4 @@
 from entity.BookTypeModel import BookType
-
-
 #用户实体类
 class User:
     id=None

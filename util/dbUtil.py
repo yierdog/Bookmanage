@@ -1,8 +1,6 @@
 # coding=gb2312
 # 数据库连接工具包
 from pymysql import Connection
-
-
 # 获取数据库连接
 def getCon():
     con = Connection(

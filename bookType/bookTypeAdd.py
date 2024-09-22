@@ -1,14 +1,10 @@
 #图书类别添加模块
 # -*- coding: utf-8 -*-
 import sys
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QWidget, QApplication, QMessageBox
-
 from dao import bookTypeDao
 from entity.BookTypeModel import BookType
-
-
 class Ui_Form(QWidget):
 
     def __init__(self):

@@ -6,6 +6,9 @@ from entity.UserModel import User
 from util import dbUtil
 
 
+#记录当前登录用户
+currentUser:User=None
+
 def login(user:User):
     """
     用户登录判断
@@ -23,5 +26,25 @@ def login(user:User):
         con.rollback()
         print(e)
         return None
+    finally:
+        dbUtil.closeCon(con)
+
+#修改
+def modifyPassword(user:User):
+    """
+    修改密码
+    :param s_bookTypeName:用户实体
+    :return: 返回执行条数
+    """
+    con = None
+    try:
+        con = dbUtil.getCon()
+        cursor = con.cursor()
+        cursor.execute(f"update t_user set password='{user.newPassword}' where username='{user.username}'")
+        return cursor.rowcount
+    except Exception as e:
+        con.rollback()
+        print(e)
+        return 0
     finally:
         dbUtil.closeCon(con)

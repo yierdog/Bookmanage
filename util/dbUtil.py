@@ -11,7 +11,7 @@ def getCon():
         port=3306,
         user='root',
         password='TJP0596',
-        database='dbbook',
+        database='book',
         autocommit=True  # 设置自动提交
     )
     return con

@@ -3,8 +3,12 @@
 import sys
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QMainWindow, QApplication, QLabel
+from PyQt5.QtWidgets import QMainWindow, QApplication, QLabel, QAction, QMessageBox
 
+from book import bookAdd, bookManage
+from bookType import bookTypeAdd, bookTypeManage
+from dao import UserDao
+from setting import modifyPassword
 from view.login import Ui_Form
 
 
@@ -34,8 +38,16 @@ class Ui_MainWindow(QMainWindow):
         self.menubar.setObjectName("menubar")
         self.menu = QtWidgets.QMenu(self.menubar)
         self.menu.setObjectName("menu")
+
+        # 图书菜单点击事件
+        self.menu.triggered[QAction].connect(self.openBook)
+
         self.menu_2 = QtWidgets.QMenu(self.menubar)
         self.menu_2.setObjectName("menu_2")
+
+        #图书类别菜单点击事件
+        self.menu_2.triggered[QAction].connect(self.openBookType)
+
         self.menu_3 = QtWidgets.QMenu(self.menubar)
         self.menu_3.setObjectName("menu_3")
         MainWindow.setMenuBar(self.menubar)
@@ -44,7 +56,8 @@ class Ui_MainWindow(QMainWindow):
 
         #设置状态栏内容
         myLable=QLabel()
-        myLable.setText("当前登录用户："+"待设置"+" | 作者： root ")
+        #myLable.setText("当前登录用户："+"待设置"+" | 作者： root ")
+        myLable.setText("当前登录用户：" + UserDao.currentUser.username + " | 作者： root ")
         self.statusbar.addWidget(myLable)
 
         MainWindow.setStatusBar(self.statusbar)
@@ -93,6 +106,9 @@ class Ui_MainWindow(QMainWindow):
         self.menubar.addAction(self.menu_2.menuAction())
         self.menubar.addAction(self.menu_3.menuAction())
 
+        # 系统设置菜单点击事件 修改密码
+        self.menu_3.triggered[QAction].connect(self.openSetting)
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -110,6 +126,35 @@ class Ui_MainWindow(QMainWindow):
         self.action_6.setText(_translate("MainWindow", "安全退出"))
         self.action_7.setText(_translate("MainWindow", "关于作者"))
         self.action_9.setText(_translate("MainWindow", "关于作者"))
+
+    def openBookType(self,m):
+        if m.text()=="图书类别添加":
+            self.bookTypeAdd=bookTypeAdd.Ui_Form()
+            self.bookTypeAdd.show()
+        elif m.text()=="图书类别信息管理":
+            self.bookTypeManage=bookTypeManage.Ui_Form()
+            self.bookTypeManage.show()
+
+    def openBook(self,m):
+        if m.text()=="图书添加":
+            self.bookAdd=bookAdd.Ui_Form()
+            self.bookAdd.show()
+        elif m.text()=="图书信息管理":
+            self.bookManage=bookManage.Ui_Form()
+            self.bookManage.show()
+
+    def openSetting(self,m):
+        if m.text()=="修改密码":
+            self.modifyPassword=modifyPassword.Ui_Form()
+            self.modifyPassword.show()
+        elif m.text()=="安全退出":
+            reply = QMessageBox.question(self, '系统提示', '您确定要安全退出吗？',
+                                         QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                                         QMessageBox.StandardButton.No)  # 确认框
+            if reply == QMessageBox.StandardButton.Yes:
+                self.close()
+        # elif m.text()=="关于作者！":
+        #     QtGui.QDesktopServices.openUrl(QtCore.QUrl('https://www.baidu.com'))
 
 #测试
 if __name__ =='__main__':
